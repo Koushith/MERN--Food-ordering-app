@@ -1,0 +1,26 @@
+{
+  "name": "mern-ecom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": " node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koushith/MERN--Food-ordering-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Koushith/MERN--Food-ordering-app/issues"
+  },
+  "homepage": "https://github.com/Koushith/MERN--Food-ordering-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
+  }
+}

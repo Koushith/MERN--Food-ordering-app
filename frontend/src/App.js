@@ -12,4 +12,12 @@ function App() {
       <main className='py-3'>
         <Container>
           <Route path='/' component={HomeScreen} exact />
-          <Route path='/product/:id' comp
+          <Route path='/product/:id' component={ProductScreen} exact />
+        </Container>
+      </main>
+      <Footer />
+    </Router>
+  );
+}
+
+export default App;
