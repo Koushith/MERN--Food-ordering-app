@@ -6,6 +6,9 @@ node_modules/
 /.pnp
 .pnp.js
 
+# production
+/frontend/node_modules
+
 # testing
 /coverage
 
