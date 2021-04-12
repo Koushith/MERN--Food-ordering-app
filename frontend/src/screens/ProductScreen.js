@@ -18,11 +18,13 @@ import {
   Form,
 } from 'react-bootstrap';
 
-function ProductScreen({ match }) {
+function ProductScreen({ history, match }) {
+  const [qty, setQty] = useState(0);
   const dispatch = useDispatch();
   const productDetail = useSelector((state) => state.productDetails);
 
   const { loading, error, product } = productDetail;
+  console.log(product);
 
   console.log(productDetail);
 
@@ -31,6 +33,10 @@ function ProductScreen({ match }) {
   }, [dispatch, match]);
 
   // const product = products.find((p) => p._id == match.params.id);
+
+  const addToCartHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
@@ -84,10 +90,32 @@ function ProductScreen({ match }) {
                 </Row>
               </ListGroup.Item>
 
+              {product.countInStock > 0 && (
+                <ListGroup.Item>
+                  <Row>
+                    <Col>QTY:</Col>
+                    <Col>
+                      <Form.Control
+                        as='select'
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(product.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              )}
+
               <ListGroup.Item>
                 <Button
                   className='btn-block'
                   type='button'
+                  onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
                 >
                   Add To Cart
