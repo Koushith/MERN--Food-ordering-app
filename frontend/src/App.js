@@ -7,7 +7,6 @@ import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 
 function App(props) {
-  console.log('PROPSSSS', props);
   return (
     <Router>
       <Header />

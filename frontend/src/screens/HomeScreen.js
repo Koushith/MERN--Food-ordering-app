@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //
 
-function HomeScreen() {
+function HomeScreen(props) {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
