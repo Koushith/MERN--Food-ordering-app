@@ -12,7 +12,7 @@ node_modules/.cache/.eslintcache
 # production
 /frontend/node_modules
 
-# testing
+# testing.
 /coverage
 
 # production
