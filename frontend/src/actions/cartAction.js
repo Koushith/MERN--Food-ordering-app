@@ -6,7 +6,7 @@ import {
   CART_SAVE_PAYMENT_METHOD,
 } from '../constants/cartConstants';
 
-// id and qty from url- along with dispach we can pass the getstate to get our entire state tree- anything with reducers list we can grab it here
+// id and qty from url- along with dispach we can pass the getstate to get our entire state tree- anything with reducers list we can grab it here, (we are passing it from usedispatch in addtocart)
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);
   dispatch({
