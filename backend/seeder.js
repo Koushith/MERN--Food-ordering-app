@@ -38,6 +38,12 @@ const importData = async () => {
   }
 };
 
+const destroyData = async () => {
+  await Order.deleteMany();
+  await Product.deleteMany();
+  await User.deleteMany();
+};
+
 if (process.argv[2] === '-d') {
   destroyData();
 } else {
