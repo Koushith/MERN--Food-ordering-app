@@ -44,9 +44,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('user not found');
   }
-  res.send({
-    user: 'user',
-  });
 });
 
 export { authUser, getUserProfile };
