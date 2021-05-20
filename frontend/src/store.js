@@ -18,10 +18,16 @@ const reducer = combineReducers({
 const cartItemsfromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
+
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null;
+
 const initialState = {
   cart: {
     cartItems: cartItemsfromStorage,
   },
+  userLogin: { userInfo: userInfoFromStorage },
 };
 
 const middleware = [thunk];
