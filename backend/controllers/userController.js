@@ -80,4 +80,35 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, getUserProfile, registerUser };
+// @desc update the profile
+//  @route PUT /api/user/profile
+//  @access Private
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+  // get the id from decoded - loggedin user
+  let user = await User.findById(req.user._id);
+
+  if (user) {
+    // set to what ever comes from form or levae it as it is.
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error('user not found');
+  }
+});
+
+export { authUser, getUserProfile, registerUser, updateUserProfile };
