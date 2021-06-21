@@ -31,4 +31,14 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { protect };
+// since- it is protected route- abobve one will add tha user object
+const admin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error(' Not authorized as an Admin');
+  }
+};
+
+export { protect, admin };

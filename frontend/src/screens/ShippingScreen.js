@@ -5,7 +5,7 @@ import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { saveShippingAddress } from '../actions/cartAction';
 
-function ShippingScreen({ history }) {
+const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
@@ -15,6 +15,7 @@ function ShippingScreen({ history }) {
   const [country, setCountry] = useState(shippingAddress.country);
 
   const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
@@ -76,6 +77,6 @@ function ShippingScreen({ history }) {
       </Form>
     </FormContainer>
   );
-}
+};
 
 export default ShippingScreen;
