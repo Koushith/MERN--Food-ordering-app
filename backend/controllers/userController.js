@@ -27,8 +27,8 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 // @desc register user and get token
-//  @route Post /api/users
-//  @access Public
+// @route Post /api/users
+// @access Public
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
