@@ -136,11 +136,45 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
-export {
-  authUser,
-  getUserProfile,
-  registerUser,
-  updateUserProfile,
-  getUsers,
-  deleteUser,
-};
+// @desc get user by id
+//  @route GET /api/users/
+//  @access Private/Admin
+
+const getUserById = asyncHandler(async (req, res) => {
+  // dont want tp fetch the password- so use select
+  const user = await User.find(req.query.id).select('-password');
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error('user not found');
+  }
+});
+
+// @desc update the user
+//  @route PUT /api/user/:id
+//  @access Private/Admin
+
+const updateUser = asyncHandler(async (req, res) => {
+  let user = await User.findById(req.params.id);
+
+  if (user) {
+    // set to what ever comes from form or levae it as it is.
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.isAdmin = req.body.isAdmin || user.isAdmin;
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error('user not found');
+  }
+});
+
+export { authUser, getUserProfile, registerUser, updateUserProfile, getUsers, deleteUser, getUserById, updateUser };
